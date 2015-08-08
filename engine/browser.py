@@ -29,7 +29,7 @@ class Browser(object):
     elif browser_name == "firefox":
       self._driver = webdriver.Firefox()
     else:
-      raise Exception("Usuported browser: %s" % browser_name)
+      raise Exception("Unsuported browser: %s" % browser_name)
     self._driver.get(Browser._GAME_URL)
     self._body = self._driver.find_element_by_tag_name('body')
 
