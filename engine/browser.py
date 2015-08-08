@@ -1,0 +1,53 @@
+
+import re
+
+from copy import deepcopy
+
+from selenium import webdriver
+from selenium.webdriver.common.keys import Keys
+from retrying import retry
+
+from helpers.metrics import with_time
+
+def _get_position_from_class(tile):
+  ''' Get the position from div object, with its class name. '''
+  class_name = tile.get_attribute('class')
+  matches = re.search('tile-position-(\d)-(\d)', class_name)
+  return int(matches.group(1)), int(matches.group(2))
+
+class Browser(object):
+  _GAME_URL = "http://gabrielecirulli.github.io/2048/"
+  _EMPTY_GRID = [[0,0,0,0],
+                 [0,0,0,0],
+                 [0,0,0,0],
+                 [0,0,0,0]]
+
+  @with_time
+  def __init__(self):
+    self._driver = webdriver.Chrome()
+    self._driver.get(Browser._GAME_URL)
+    self._body = self._driver.find_element_by_tag_name('body')
+
+  @retry(stop_max_attempt_number=7)
+  @with_time
+  def read_grid(self):
+    ''' Returns 2048 grid. '''
+    tiles = self._driver.find_elements_by_tag_name('div')
+    tiles = filter(lambda t : 'tile-position' in t.get_attribute('class'), tiles)
+    grid = deepcopy(Browser._EMPTY_GRID)
+    for tile in tiles:
+  	  j,i = _get_position_from_class(tile)
+  	  val = int(tile.text)
+  	  grid[i-1][j-1] = val
+    return grid
+
+  @with_time
+  def press_key(self, key):
+    ''' Simulate keypress for the browser. '''
+    self._body.send_keys(key)
+
+  @with_time
+  def close(self):
+  	self._body = None
+  	self._driver.close()
+  	self._driver = None
