@@ -24,9 +24,10 @@ def get_all_possible_grids(grid, next_key):
 
 if __name__ == '__main__':
   parser = ArgumentParser(description='Tired of playing 2048? Let your computer do it for you!')
+  parser.add_argument('-b', '--browser', dest='browser', type=str, help='Browser to use for the simulation.')
   args = parser.parse_args()
 
-  browser = Browser()
+  browser = Browser(args.browser)
   print_matrix(browser.read_grid())
   browser.press_key(Keys.DOWN)
   print_matrix(browser.read_grid())

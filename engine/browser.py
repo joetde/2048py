@@ -23,8 +23,13 @@ class Browser(object):
                  [0,0,0,0]]
 
   @with_time
-  def __init__(self):
-    self._driver = webdriver.Chrome()
+  def __init__(self, browser_name = "chrome"):
+    if not browser_name or browser_name == "chrome":
+      self._driver = webdriver.Chrome()
+    elif browser_name == "firefox":
+      self._driver = webdriver.Firefox()
+    else:
+      raise Exception("Usuported browser: %s" % browser_name)
     self._driver.get(Browser._GAME_URL)
     self._body = self._driver.find_element_by_tag_name('body')
 
