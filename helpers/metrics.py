@@ -10,7 +10,8 @@ def with_time(func):
     ret = func(*args, **kwargs)
     end = time() * 1000
     time_spent = int(end - start)
-    log.debug('<%s> Time spent: %sms', func.__name__, time_spent)
+    # note: doesn't show class name for methods
+    log.debug('<%s.%s> Time spent: %sms', func.__module__, func.__name__, time_spent)
     return ret
   return wrapper
 
