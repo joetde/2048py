@@ -5,10 +5,11 @@ python:
 
 install:
     - "pip install ."
-    - "pip install nose"
+    - "pip install nose pylint"
 script:
     - "2048.py --help"
     - "nosetests -I browser -v"
+    - "pylint 2048 engine helpers"
 
 branches:
     only:

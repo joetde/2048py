@@ -1,7 +1,7 @@
 
 from time import time
 
-from logger import log
+from helpers.logger import log
 
 def with_time(func):
   ''' Helper decorator for timing function. '''
@@ -10,12 +10,12 @@ def with_time(func):
     ret = func(*args, **kwargs)
     end = time() * 1000
     time_spent = int(end - start)
-    log.debug('<%s> Time spent: %sms' % (func.__name__, time_spent))
+    log.debug('<%s> Time spent: %sms', func.__name__, time_spent)
     return ret
   return wrapper
 
 def with_count(func):
   ''' Helper decorator for counted instructions. '''
   def wrapper(*args, **kwargs):
-  	return func(*args, **kwargs)
+    return func(*args, **kwargs)
   return wrapper

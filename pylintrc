@@ -1,0 +1,24 @@
+[MASTER]
+ignore=.git,build
+persistent=yes
+
+[MESSAGES CONTROL]
+# disable convention (C) and locally disabled (I)
+disable=C,I
+
+[REPORTS]
+reports=yes
+evaluation=10.0 - ((float(5 * error + 3 * warning + refactor + convention) / statement) * 10)
+
+[VARIABLES]
+dummy-variables-rgx=_
+
+[BASIC]
+good-names=i,j,ii,jj,_
+
+[MISCELLANEOUS]
+notes=TODO,todo,TEMP,temp
+
+[FORMAT]
+max-line-length=120
+indent-string='  '

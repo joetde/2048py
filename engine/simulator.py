@@ -2,7 +2,7 @@
 from copy import deepcopy
 
 # not the best here, but since selenium defines them...
-from browser import Keys
+from engine.browser import Keys
 
 def create_new_grid_with_move(grid, key):
   ''' Create a new grid from the given grid, with the given action simulated. '''
