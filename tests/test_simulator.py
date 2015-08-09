@@ -1,8 +1,8 @@
 
-from nose.tools import assert_equals
+from nose.tools import assert_equals, assert_in
 
 from helpers.print_util import print_matrix
-from engine.simulator import create_new_grid_with_move, get_rotated_coordinates, Keys
+from engine.simulator import create_new_grid_with_move, get_rotated_coordinates, get_possible_grids, Keys
 
 test_data_move_down_inp = [[[2,0,0,0],
                             [0,0,0,0],
@@ -122,3 +122,33 @@ def test_get_rotated_coordinates():
   assert_equals(get_rotated_coordinates(1 , 3, Keys.RIGHT, 4), (1,0))
   assert_equals(get_rotated_coordinates(1 , 3, Keys.DOWN, 4), (0,1))
   assert_equals(get_rotated_coordinates(1 , 3, Keys.LEFT, 4), (1,3))
+
+def test_get_possible_grids():
+  grids = get_possible_grids([[0,2,0,2],
+                              [0,0,2,2],
+                              [0,2,2,0],
+                              [0,0,0,0]], Keys.LEFT)
+  assert_in(([[2,2,0,2],
+              [0,0,2,2],
+              [0,2,2,0],
+              [0,0,0,0]], 0.1), grids)
+  assert_in(([[0,2,2,2],
+              [0,0,2,2],
+              [0,2,2,0],
+              [0,0,0,0]], 0.1), grids)
+  assert_in(([[0,2,0,2],
+              [0,2,2,2],
+              [0,2,2,0],
+              [0,0,0,0]], 0.2), grids)
+  assert_in(([[0,2,0,2],
+              [0,0,2,2],
+              [2,2,2,0],
+              [0,0,0,0]], 0.1), grids)
+  assert_in(([[0,2,0,2],
+              [0,0,2,2],
+              [0,2,2,2],
+              [0,0,0,0]], 0.1), grids)
+  assert_in(([[0,2,0,2],
+              [0,0,2,2],
+              [0,2,2,0],
+              [0,0,0,2]], 0.4), grids)

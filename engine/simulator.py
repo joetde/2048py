@@ -29,7 +29,6 @@ def simulate_move(grid, key):
         set_at(ii, last_pos, curr, grid, key)
         last = curr
 
-
 def get_rotated_coordinates(ii, jj, key, size):
   ''' Helper to abstract rotation. '''
   if key == Keys.LEFT:
@@ -50,6 +49,29 @@ def set_at(ii, jj, value, grid, key):
   i,j = get_rotated_coordinates(ii, jj, key, len(grid))
   grid[i][j] = value
 
-def get_all_possible_grids(grid, next_key):
-  ''' Create the list of all possible grids from a given grid and move. '''
-  pass
+def get_possible_grids(grid, key):
+  ''' Create the list of all possible grids from a given grid and move.
+  Returns list of grids and their probability. [(grid, probability)]'''
+  issues = float(sum([row.count(0) for row in grid]))
+  positions = []
+  for ii in range(len(grid)):
+    last_zero = -1
+    zero_count = 0.
+    for jj in range(0, len(grid)):
+      curr = get_at(ii, jj, grid, key)
+      if curr == 0:
+        zero_count += 1
+        last_zero = jj
+      else:
+        if zero_count != 0:
+          positions.append((ii, last_zero, zero_count / issues))
+          zero_count = 0
+    if zero_count != 0:
+      positions.append((ii, last_zero, zero_count / issues))
+  grids = []
+  for ii,jj,prob in positions:
+    new_grid = deepcopy(grid)
+    # note, 4 is also possible need update for better prevision
+    set_at(ii, jj, 2, new_grid, key)
+    grids.append((new_grid, prob))
+  return grids
