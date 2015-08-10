@@ -2,7 +2,8 @@
 
 from argparse import ArgumentParser
 
-from engine.browser import Browser, Keys
+from engine.browser import Browser
+from engine.solver import solve
 from helpers.print_util import print_matrix
 
 if __name__ == '__main__':
@@ -11,7 +12,9 @@ if __name__ == '__main__':
   args = parser.parse_args()
 
   browser = Browser(args.browser)
-  print_matrix(browser.read_grid())
-  browser.press_key(Keys.DOWN)
-  print_matrix(browser.read_grid())
-  browser.close()
+  for i in range(1000):
+    grid = browser.read_grid()
+    print_matrix(grid)
+    print
+    browser.press_key(solve(grid)[0])
+  # browser.close()

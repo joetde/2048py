@@ -34,7 +34,7 @@ class Browser(object):
     self._driver.get(Browser._GAME_URL)
     self._body = self._driver.find_element_by_tag_name('body')
 
-  @retry(stop_max_attempt_number=7)
+  @retry(stop_max_attempt_number=3)
   @with_time
   def read_grid(self):
     ''' Returns 2048 grid. '''

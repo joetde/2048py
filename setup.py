@@ -9,6 +9,6 @@ setup(name='2048py',
       url='https://github.com/joetde/2048py',
       scripts=['2048.py'],
       packages=find_packages(),
-      install_requires=['retrying>=1.0', 'selenium>=2.47'],
+      install_requires=['retrying>=1.0', 'selenium>=2.47','timeout-decorator>=0.3'],
      )
 

@@ -3,8 +3,8 @@ ignore=.git,build
 persistent=yes
 
 [MESSAGES CONTROL]
-# disable convention (C) and locally disabled (I)
-disable=C,I
+# disable convention (C) refactor (R) and locally disabled (I)
+disable=C,R,I
 
 [REPORTS]
 reports=yes
