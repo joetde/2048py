@@ -4,8 +4,8 @@ from math import log
 
 from timeout_decorator import timeout
 
-from helpers.metrics import with_time, with_count
-from engine.simulator import get_possible_grids, simulate_move, create_new_grid_with_move, Keys, get_at
+from lib2048.helpers.metrics import with_time, with_count
+from lib2048.engine.simulator import get_possible_grids, simulate_move, create_new_grid_with_move, Keys, get_at
 
 _KEYS = [Keys.UP, Keys.RIGHT, Keys.DOWN, Keys.LEFT]
 

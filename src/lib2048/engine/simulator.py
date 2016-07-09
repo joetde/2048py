@@ -1,7 +1,7 @@
 from copy import deepcopy
 
 # not the best here, but since selenium defines them...
-from engine.browser import Keys
+from lib2048.engine.browser import Keys
 
 
 def create_new_grid_with_move(grid, key):

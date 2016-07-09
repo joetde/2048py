@@ -1,6 +1,6 @@
 from nose.tools import assert_equals, assert_in
 
-from engine import create_new_grid_with_move, get_rotated_coordinates, get_possible_grids, Keys
+from lib2048.engine.simulator import create_new_grid_with_move, get_rotated_coordinates, get_possible_grids, Keys
 
 test_data_move_down_inp = [[[2, 0, 0, 0],
                             [0, 0, 0, 0],

@@ -7,7 +7,7 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from retrying import retry
 
-from helpers.metrics import with_time
+from lib2048.helpers.metrics import with_time
 
 
 def _get_position_from_class(tile):

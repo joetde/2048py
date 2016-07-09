@@ -1,7 +1,6 @@
 from nose.tools import assert_not_equal
 
-from engine import solve, Keys, average
-
+from lib2048.engine.solver import solve, Keys, average
 
 def test_solve_forbiden_actions():
     key = solve([[2, 2, 4, 16],

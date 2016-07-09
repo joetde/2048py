@@ -14,8 +14,14 @@ lint:
 install:
 	@pip install .
 
+test_install:
+	@2048.py --help
+
+uninstall:
+	@pip uninstall -y 2048py
+
 nose:
-	@nosetests -I browser -v
+	@nosetests -v --with-coverage --cover-package=lib2048 tests/test_*.py
 
 upgrade:
 	@pip install retrying timeout-decorator selenium --upgrade

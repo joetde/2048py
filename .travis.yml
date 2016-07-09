@@ -4,12 +4,11 @@ python:
     - "2.7"
 
 install:
-    - "pip install ."
-    - "pip install nose pylint"
+    - "pip install nose nose-cov pylint"
+    - "make install"
 script:
-    - "2048.py --help"
-    - "nosetests -I browser -v"
-    - "pylint 2048 engine helpers"
+    - "make test_install"
+    - "make test"
 
 branches:
     only:

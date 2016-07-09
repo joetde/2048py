@@ -2,9 +2,9 @@
 
 from argparse import ArgumentParser
 
-from engine.browser import Browser
-from engine.solver import solve
-from helpers.print_util import print_matrix
+from lib2048.engine.browser import Browser
+from lib2048.engine.solver import solve
+from lib2048.helpers.print_util import print_matrix
 
 if __name__ == '__main__':
     parser = ArgumentParser(description='Tired of playing 2048? Let your computer do it for you!')

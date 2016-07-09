@@ -1,6 +1,6 @@
 from time import time
 
-from helpers.logger import log
+from lib2048.helpers.logger import log
 
 
 def with_time(func):
