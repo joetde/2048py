@@ -1,13 +1,21 @@
 
-all: clean lint install
+all: clean test install
 
 clean:
 	@rm -rf *.egg*
 	@rm -rf build
 	@rm -rf dist
 
+test: lint nose
+
 lint:
 	@pylint src/*
 
 install:
-	@python setup.py install
+	@pip install .
+
+nose:
+	@nosetests -I browser -v
+
+upgrade:
+	@pip install retrying timeout-decorator selenium --upgrade
