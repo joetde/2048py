@@ -1,4 +1,3 @@
-
 import logging
 
 log = logging.getLogger('2048.py')

@@ -7,8 +7,7 @@ setup(name='2048py',
       description='Cheat engine for 2048 game',
       author='joetde',
       url='https://github.com/joetde/2048py',
-      scripts=['2048.py'],
+      scripts=['src/2048.py'],
       packages=find_packages(),
-      install_requires=['retrying>=1.0', 'selenium>=2.47','timeout-decorator>=0.3'],
-     )
-
+      install_requires=['retrying>=1.0', 'selenium>=2.47', 'timeout-decorator>=0.3'],
+      )
