@@ -55,6 +55,10 @@ class Browser(object):
             grid[i - 1][j - 1] = val
         return grid
 
+    def read_score(self):
+        """ Returns current score. """
+        return int(self._driver.find_element_by_class_name("score-container").text)
+
     @with_time
     def press_key(self, key):
         """ Simulate keypress for the browser. """

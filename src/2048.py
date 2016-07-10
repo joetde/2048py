@@ -14,6 +14,7 @@ if __name__ == '__main__':
     browser = Browser(args.browser)
     while True:
         grid = browser.read_grid()
+        print browser.read_score()
         print_matrix(grid)
         print
         browser.press_key(solve(grid)[0])
