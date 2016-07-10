@@ -17,3 +17,6 @@ branches:
     only:
         - master
 
+addons:
+    code_climate:
+        repo_token: cb8e237a9e0bb2030b7fb9257c4f12c41b9e3b7b0db30e1a8396b4de6a748b90
