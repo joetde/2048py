@@ -1,5 +1,4 @@
 import re
-
 from copy import deepcopy
 
 from selenium import webdriver
@@ -8,6 +7,11 @@ from selenium.webdriver.common.keys import Keys
 from retrying import retry
 
 from lib2048.helpers.metrics import with_time
+
+# Deactivate DEBUG logging for selenium
+import logging
+selenium_logger = logging.getLogger('selenium.webdriver.remote.remote_connection')
+selenium_logger.setLevel(logging.WARNING)
 
 
 def _get_position_from_class(tile):
@@ -25,14 +29,17 @@ class Browser(object):
                    [0, 0, 0, 0]]
 
     @with_time
-    def __init__(self, browser_name="chrome"):
-        if not browser_name or browser_name == "chrome":
+    def __init__(self, browser_name="phantomjs"):
+        if browser_name == "phantomjs":
+            self._driver = webdriver.PhantomJS()
+        elif browser_name == "chrome":
             self._driver = webdriver.Chrome()
         elif browser_name == "firefox":
             self._driver = webdriver.Firefox()
         else:
             raise Exception("Unsupported browser: %s" % browser_name)
         self._driver.get(Browser._GAME_URL)
+        self._driver.find_element_by_class_name("restart-button").click()
         self._body = self._driver.find_element_by_tag_name('body')
 
     @retry(stop_max_attempt_number=3)
@@ -55,6 +62,4 @@ class Browser(object):
 
     @with_time
     def close(self):
-        self._body = None
         self._driver.close()
-        self._driver = None

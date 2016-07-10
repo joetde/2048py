@@ -22,7 +22,7 @@ def test_read_grid():
     grid = browser.read_grid()
     browser.close()
     nb_zero = sum([row.count(0) for row in grid])
-    assert nb_zero == 14
+    assert_equals(nb_zero, 14)
 
 
 def test_press_key_up():
