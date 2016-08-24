@@ -1,7 +1,7 @@
 from nose.tools import assert_equals
 
 from lib2048.engine.browser import Browser, Keys
-from lib2048.engine.simulator import create_new_grid_with_move
+from lib2048.solve.simulator import create_new_grid_with_move
 
 
 def assert_at_most_one_different_element(grid_ref, grid):

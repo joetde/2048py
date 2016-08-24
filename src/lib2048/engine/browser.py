@@ -55,9 +55,12 @@ class Browser(object):
             grid[i - 1][j - 1] = val
         return grid
 
+    @retry
     def read_score(self):
         """ Returns current score. """
-        return int(self._driver.find_element_by_class_name("score-container").text)
+        text = self._driver.find_element_by_class_name("score-container").text
+        text = text.split()[0]
+        return int(text)
 
     @with_time
     def press_key(self, key):

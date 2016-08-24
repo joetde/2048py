@@ -22,3 +22,4 @@ notes=TODO,todo,TEMP,temp
 [FORMAT]
 max-line-length=120
 indent-string='    '
+

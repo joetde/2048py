@@ -14,6 +14,9 @@ lint:
 install:
 	@pip install .
 
+run:
+	@2048.py
+
 test_install:
 	@2048.py --help
 
