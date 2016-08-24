@@ -20,6 +20,10 @@ run:
 test_install:
 	@2048bot.py --help
 
+test_git_install:
+	@pip install -U git+git://github.com/joetde/2048py.git
+	@2048bot.py --help
+
 uninstall:
 	@pip uninstall -y 2048py
 

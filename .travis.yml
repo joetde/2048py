@@ -9,10 +9,12 @@ before_install:
 install:
     - "pip install nose nose-cov pylint mock codeclimate-test-reporter"
     - "make install"
+
 script:
     - "make test_install"
     - "make test"
     - "CODECLIMATE_REPO_TOKEN=cb8e237a9e0bb2030b7fb9257c4f12c41b9e3b7b0db30e1a8396b4de6a748b90 codeclimate-test-reporter"
+    - "make test_git_install"
 
 branches:
     only:

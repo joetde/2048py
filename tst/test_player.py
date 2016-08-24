@@ -16,8 +16,6 @@ def test_player():
     solver_mock = Mock()
     solver_mock.solve = Mock(return_value = [Keys.UP])
 
-    print game_mock.read_grid()
-
     player = Player(game_mock, solver_mock)
     player.play()
 
