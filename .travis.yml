@@ -7,7 +7,7 @@ before_install:
     - "phantomjs --version"
 
 install:
-    - "pip install nose nose-cov pylint codeclimate-test-reporter"
+    - "pip install nose nose-cov pylint mock codeclimate-test-reporter"
     - "make install"
 script:
     - "make test_install"
