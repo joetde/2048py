@@ -1,29 +1,28 @@
 
-from lib2048.browse.browser import Browser
-from lib2048.helpers.print_util import print_matrix
-from lib2048.solve.solver import Solver, solve
+from lib2048.generic.print_util import print_matrix
+from lib2048.solve.simulator import is_game_over
 
 
 class Player(object):
 
-    def __init__(self, browser_name):
-        self._browser = Browser(browser_name)
-        self._solver = Solver()
+    def __init__(self, game, solver):
+        self._game = game
+        self._solver = solver
 
     def play(self):
         playing = True
 
         while playing:
-            grid = self._browser.read_grid()
-            score = self._browser.read_score()
-            free_cells = sum([r.count(0) for r in grid])
+            grid = self._game.read_grid()
+            score = self._game.read_score()
 
             print score
             print_matrix(grid)
 
-            if free_cells == 0:
+            if is_game_over(grid):
                 playing = False
             else:
-                self._browser.press_key(solve(grid)[0])
+                best_move = self._solver.solve(grid)[0]
+                self._game.press_key(best_move)
 
-        self._browser.close()
+        self._game.finish()

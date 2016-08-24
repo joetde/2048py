@@ -12,13 +12,13 @@ lint:
 	@pylint src/*
 
 install:
-	@pip install .
+	@pip install -U .
 
 run:
-	@2048.py
+	@2048bot.py
 
 test_install:
-	@2048.py --help
+	@2048bot.py --help
 
 uninstall:
 	@pip uninstall -y 2048py
@@ -28,3 +28,6 @@ nose:
 
 upgrade:
 	@pip install retrying timeout-decorator selenium --upgrade
+
+kill_node:
+	@kill -9 $(shell ps aux | grep node | awk '{print $$1}')

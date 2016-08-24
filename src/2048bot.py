@@ -2,6 +2,9 @@
 
 from argparse import ArgumentParser
 
+from lib2048.solve.heuristic_solver import HeuristicSolver
+
+from lib2048.game.browser import Browser
 from lib2048.play.player import Player
 
 if __name__ == '__main__':
@@ -9,5 +12,5 @@ if __name__ == '__main__':
     parser.add_argument('-b', '--browser', dest='browser', type=str, help='Browser to use for the simulation.', default='phantomjs')
     args = parser.parse_args()
 
-    player = Player(args.browser)
+    player = Player(Browser(args.browser), HeuristicSolver())
     player.play()

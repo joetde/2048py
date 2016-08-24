@@ -1,6 +1,6 @@
 from nose.tools import assert_equals
 
-from lib2048.browse.browser import Browser, Keys
+from lib2048.game.browser import Browser, Keys
 from lib2048.solve.simulator import create_new_grid_with_move
 
 
@@ -20,7 +20,7 @@ def test_read_grid():
     # display.start()
     browser = Browser()
     grid = browser.read_grid()
-    browser.close()
+    browser.finish()
     nb_zero = sum([row.count(0) for row in grid])
     assert_equals(nb_zero, 14)
 
@@ -30,7 +30,7 @@ def test_press_key_up():
     grid_orig = browser.read_grid()
     browser.press_key(Keys.UP)
     grid = browser.read_grid()
-    browser.close()
+    browser.finish()
     grid_ref = create_new_grid_with_move(grid_orig, Keys.UP)
     assert_at_most_one_different_element(grid_ref, grid)
 
@@ -40,6 +40,6 @@ def test_press_key_down():
     grid_orig = browser.read_grid()
     browser.press_key(Keys.DOWN)
     grid = browser.read_grid()
-    browser.close()
+    browser.finish()
     grid_ref = create_new_grid_with_move(grid_orig, Keys.DOWN)
     assert_at_most_one_different_element(grid_ref, grid)

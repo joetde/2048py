@@ -6,7 +6,9 @@ from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
 from retrying import retry
 
-from lib2048.helpers.metrics import with_time
+from lib2048.game.game import Game
+from lib2048.generic.exception import UnsupportedBrowserException
+from lib2048.generic.metrics import with_time
 
 # Deactivate DEBUG logging for selenium
 import logging
@@ -21,14 +23,13 @@ def _get_position_from_class(tile):
     return int(matches.group(1)), int(matches.group(2))
 
 
-class Browser(object):
+class Browser(Game):
     _GAME_URL = "http://gabrielecirulli.github.io/2048/"
     _EMPTY_GRID = [[0, 0, 0, 0],
                    [0, 0, 0, 0],
                    [0, 0, 0, 0],
                    [0, 0, 0, 0]]
 
-    @with_time
     def __init__(self, browser_name="phantomjs"):
         if browser_name == "phantomjs":
             self._driver = webdriver.PhantomJS()
@@ -37,12 +38,13 @@ class Browser(object):
         elif browser_name == "firefox":
             self._driver = webdriver.Firefox()
         else:
-            raise Exception("Unsupported browser: %s" % browser_name)
+            raise UnsupportedBrowserException("Unsupported browser: %s" % browser_name)
+
         self._driver.get(Browser._GAME_URL)
         self._driver.find_element_by_class_name("restart-button").click()
         self._body = self._driver.find_element_by_tag_name('body')
 
-    @retry(stop_max_attempt_number=3)
+    @retry
     @with_time
     def read_grid(self):
         """ Returns 2048 grid. """
@@ -67,6 +69,5 @@ class Browser(object):
         """ Simulate keypress for the browser. """
         self._body.send_keys(key)
 
-    @with_time
-    def close(self):
+    def finish(self):
         self._driver.close()

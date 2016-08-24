@@ -1,7 +1,21 @@
 from copy import deepcopy
 
 # not the best here, but since selenium defines them...
-from lib2048.browse.browser import Keys
+from lib2048.game.browser import Keys
+from lib2048.generic.exception import SimulatorException
+
+POSSIBLE_MOVES = [Keys.UP, Keys.RIGHT, Keys.DOWN, Keys.LEFT]
+
+
+def is_game_over(grid):
+    grid_left = create_new_grid_with_move(grid, Keys.LEFT)
+    grid_right = create_new_grid_with_move(grid, Keys.RIGHT)
+    grid_up = create_new_grid_with_move(grid, Keys.UP)
+    grid_down = create_new_grid_with_move(grid, Keys.DOWN)
+    return (grid == grid_left and
+            grid == grid_right and
+            grid == grid_up and
+            grid == grid_down)
 
 
 def create_new_grid_with_move(grid, key):
@@ -41,7 +55,7 @@ def get_rotated_coordinates(ii, jj, key, size):
         return jj, size - 1 - ii
     elif key == Keys.DOWN:
         return size - 1 - jj, ii
-    raise Exception("Unknown key %s, this shouldn't happen!" % key)
+    raise SimulatorException("Unknown key %s, this shouldn't happen!" % key)
 
 
 def get_at(ii, jj, grid, key):
