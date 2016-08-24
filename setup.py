@@ -4,7 +4,7 @@ from setuptools import setup, find_packages
 
 setup(name='2048py',
       version='0.1',
-      description='Cheat lib2048.engine for 2048 game',
+      description='Bot to play 2048 game',
       author='joetde',
       url='https://github.com/joetde/2048py',
       scripts=['src/2048.py'],

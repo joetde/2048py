@@ -1,6 +1,6 @@
 from nose.tools import assert_equals
 
-from lib2048.engine.browser import Browser, Keys
+from lib2048.browse.browser import Browser, Keys
 from lib2048.solve.simulator import create_new_grid_with_move
 
 

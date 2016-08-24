@@ -1,5 +1,5 @@
 
-from lib2048.engine.browser import Browser
+from lib2048.browse.browser import Browser
 from lib2048.helpers.print_util import print_matrix
 from lib2048.solve.solver import Solver, solve
 
