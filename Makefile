@@ -24,7 +24,7 @@ uninstall:
 	@pip uninstall -y 2048py
 
 nose:
-	@nosetests --with-coverage --cover-package=lib2048 tests/test_*.py
+	@nosetests --with-coverage --cover-package=lib2048 tst/test_*.py
 
 upgrade:
 	@pip install retrying timeout-decorator selenium --upgrade
